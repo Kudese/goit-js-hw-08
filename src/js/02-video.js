@@ -1,7 +1,10 @@
-import Vimeo from "@vimeo/player"
-const iframe = document.getElementById("vimeo-player");
-const player = new Vimeo.Player(iframe);
 
-player.on('timeupdate', function(data) {
-   console.log(data)
+import Player from '@vimeo/player';
+
+const player = new Player('vimeo-player', {
+
+});
+
+player.on('timeupdate', function(time) {
+    console.log(time);
 });
