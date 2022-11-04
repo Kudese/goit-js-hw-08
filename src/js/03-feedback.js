@@ -10,6 +10,11 @@ elEmailField.addEventListener('input', throttle(saveMail, 500));
 elMessageField.addEventListener('input', throttle(saveMessage, 500));
 elSubButton.addEventListener('submit', sellForm);
 const localSave = { email: '', message: '' };
+if (localStorage.getItem(localKey) !== null) {
+  localSave.email = JSON.parse(localStorage.getItem(localKey)).email;
+  localSave.message = JSON.parse(localStorage.getItem(localKey)).message;
+}
+
 
 function saveMail(e) {
   localSave.email = e.target.value;
@@ -22,10 +27,7 @@ function saveMessage(e) {
 
 
 
-if (localStorage.getItem(localKey) !== null) {
-  elEmailField.value = JSON.parse(localStorage.getItem(localKey)).email;
-  elMessageField.value = JSON.parse(localStorage.getItem(localKey)).message;
-}
+
 
 function sellForm(e) {
   e.preventDefault();
@@ -33,4 +35,11 @@ function sellForm(e) {
   localStorage.clear(localKey);
   elEmailField.value = '';
   elMessageField.value = '';
+  localSave.email=""
+  localSave.message=""
 }
+if (localStorage.getItem(localKey) !== null) {
+  elEmailField.value = JSON.parse(localStorage.getItem(localKey)).email;
+  elMessageField.value = JSON.parse(localStorage.getItem(localKey)).message;
+}
+
